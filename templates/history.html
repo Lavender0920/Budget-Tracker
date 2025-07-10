@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- templates/history.html -->
+{% extends "base.html" %}
+{% block title %}Expense History{% endblock %}
+{% block content %}
+<h1>Recent Expenses</h1>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th style="padding: 10px; background-color: #007bff; color: white;">Date</th>
+            <th style="padding: 10px; background-color: #007bff; color: white;">Amount</th>
+            <th style="padding: 10px; background-color: #007bff; color: white;">Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in records.itertuples() %}
+        <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 10px;">{{ row.date }}</td>
+            <td style="padding: 10px;">{{ row.amount }}</td>
+            <td style="padding: 10px;">{{ row.category }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <h1>Recent Expenses</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in records.itertuples() %}
+                    <tr>
+                        <td>{{ row.date }}</td>
+                        <td>{{ row.amount }}</td>
+                        <td>{{ row.category }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

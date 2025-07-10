@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- templates/dashboard.html -->
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+{% if data_available %}
+    <img src="data:image/png;base64,{{ line_chart }}" style="width: 100%; border-radius: 5px; margin-top: 20px;">
+{% else %}
+    <p class="no-data" style="text-align: center; color: gray; margin-top: 50px;">No data available. Please upload expenses first.</p>
+{% endif %}
+<a class="btn-history" href="{{ url_for('history') }}" style="display: block; width: 200px; margin: 30px auto 0; padding: 10px 20px; background-color: #007bff; color: white; text-align: center; text-decoration: none; border-radius: 5px; font-weight: bold;">View Expense History</a>
+{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        {% if data_available %}
+            <img src="data:image/png;base64,{{ line_chart }}">
+        {% else %}
+            <p class="no-data">No data available. Please upload expenses first.</p>
+        {% endif %}
+        <a class="btn-history" href="{{ url_for('history') }}">View Expense History</a>
+    </div>
+</body>
+</html>

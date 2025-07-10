@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Budget Tracker</title>
+</head>
+<body>
+        <h1>Upload Expense CSV</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <br><br>
+            <button type="submit">Upload</button>
+        </form>
+   
+
+    <hr>
+
+    <div class="container">
+    <h2>Uploaded Files</h2>
+
+    {% if files %}
+    <div class="uploaded-files">
+        <table>
+            <thead>
+                <tr>
+                    <th>Filename</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for file in files %}
+                <tr>
+                    <td>{{ file }}</td>
+                    <td>
+                        <a class="forecast-link" href="{{ url_for('forecast_file', filename=file) }}">Forecast</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p class="no-data">No files uploaded yet.</p>
+    {% endif %}
+</div>
+
+
+</body>
+</html>
